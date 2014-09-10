@@ -12,3 +12,4 @@ The programming languages I am planning to learn and/or practice are:
 4. Common Lisp
 5. Haskell
 6. Swift
+7. Java
