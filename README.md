@@ -7,10 +7,9 @@ This is where all my computer programs are going to reside.
 
 The programming languages I am interested in:
 First subset:
-- C //Practicing now
-- Java
+- C //Stopped after a little while
+- Scala //Just started
 - Go
-- Objective-C or Swift
 
 Second subset:
 - Perl
@@ -20,4 +19,7 @@ Second subset:
 Third subset:
 - Common Lisp or OCaml
 - Haskell
-- Clojure or Scala
+
+Ignored:
+- Java //Started and left. It doesn't suit my style and for rapid prototyping. Too verbose.
+- Objective-C or Swift //Not anytime sooner
