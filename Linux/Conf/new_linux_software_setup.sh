@@ -7,7 +7,7 @@ sudo apt-get install git
 echo "Install vim"
 sudo apt-get install vim
 
-echo "vim plugins - START"
+echo "vim plugins - END"
 echo "Install Pathogen"
 mkdir -p ~/.vim/autoload ~/.vim/bundle 
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
@@ -32,6 +32,4 @@ git clone https://github.com/ctrlpvim/ctrlp.vim.git
 echo "Install syntastic"
 git clone https://github.com/scrooloose/syntastic.git
 
-echo "Install Scala syntax"
-git clone https://github.com/derekwyatt/vim-scala.git
-echo "vim plugins - START"
+echo "vim plugins - END"
