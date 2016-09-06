@@ -1,8 +1,11 @@
+" set line numbers
+set nu
+
 " ignore case while searching
 set ic
 
 " tab character will be 4 spaces in width
-set tabstop=4 shiftwidth=4 smartindent noexpandtab
+set tabstop=4 shiftwidth=4 smartindent noexpandtab smarttab
 
 "=============================================================
 " Appearance
@@ -18,13 +21,30 @@ endif
 " Set visual select colors
 hi Visual ctermfg=Black ctermbg=Yellow guifg=Black guibg=Yellow gui=none
 
-" Highlight unnecessary white spaces
-highlight NoSpacesIndent ctermbg=Magenta guibg=Magenta
-match NoSpacesIndent /\s\+$\|^\t*\zs \+/
-
 " Highlight searches
 set hlsearch
 hi Search ctermfg=Black ctermbg=Blue guifg=Black guibg=Blue
+
+" Highlight unnecessary white spaces
+" highlight NoSpacesIndent ctermbg=lightgrey guibg=lightgrey
+" match NoSpacesIndent /\s\+$\|^\t*\zs \+/
+
+" Highlight TO DO
+highlight TO_DO_Highlight ctermbg=lightblue ctermfg=black guibg=lightblue guifg=black
+call matchadd('TO_DO_Highlight', 'TO DO')
+
+" Highlight IN PROGRESS
+highlight IN_PROGRESS_Highlight ctermbg=yellow ctermfg=black guibg=lightyellow guifg=black
+call matchadd('IN_PROGRESS_Highlight', 'IN PROGRESS')
+
+" Highlight DONE
+highlight DONE_Highlight ctermbg=lightgreen ctermfg=black guibg=lightgreen guifg=black
+call matchadd('DONE_Highlight', 'DONE')
+
+" Highlight CLOSED
+highlight CLOSED_Highlight ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black
+call matchadd('CLOSED_Highlight', 'CLOSED\|DEFERRED')
+
 
 "=============================================================
 "  Pathogen
@@ -45,14 +65,15 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 3
+let g:syntastic_loc_list_height = 2
 
 let g:syntastic_mode_map = {
-    \ "mode": "passive",
-    \ "active_filetypes": ["perl", "sh", "shell"]
+	\ "mode": "active",
+	\ "active_filetypes": ["perl", "sh", "shell"],
+	\ "passive_filetypes": ["scala", "java"]
 \}
 
 "=============================================================
@@ -91,7 +112,7 @@ set hidden
 
 " Close buffer
 nmap <C-q> :bd<CR>
-nmap ,q :bd!<CR>
+nmap <C-x> :bd!<CR>
 
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
@@ -206,12 +227,3 @@ function! s:MySQLSettings()
 	" Insert comments markers
 	map - :s/^/-- /<CR>:nohlsearch<CR>
 endfunction
-
-
-function RunWith (command)
-	execute "w"
-	execute "!clear;time " . a:command . " " . expand("%")
-endfunction
-
-autocmd FileType java nmap <C-x> :call RunWith("java.pl")<CR>
-autocmd FileType scala nmap <C-x> :call RunWith("scala")<CR>
